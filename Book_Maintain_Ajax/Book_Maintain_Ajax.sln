@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book_Maintain_Ajax", "Book_Maintain_Ajax\Book_Maintain_Ajax.csproj", "{8FBD519B-365D-43E1-AB9A-F16DEB99937C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book_Maintain_Ajax.Model", "Book_Maintain_Ajax.Model\Book_Maintain_Ajax.Model.csproj", "{29D3C4F1-FC37-45AE-A060-67856B95E1EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book_Maintain_Ajax.Dao", "Book_Maintain_Ajax.Dao\Book_Maintain_Ajax.Dao.csproj", "{362B6FA5-4A7B-4C3C-BC55-7F2BEBDD3987}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book_Maintain_Ajax.Service", "Book_Maintain_Ajax.Service\Book_Maintain_Ajax.Service.csproj", "{DC4BD9E5-73B3-4E53-BC4E-F130D42D26E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book_Maintain_Ajax.Tool", "Book_Maintain_Ajax.Tool\Book_Maintain_Ajax.Tool.csproj", "{1667A329-F6E7-4DB5-857B-D5B6224752B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book_Maintain_Ajax.Test", "Book_Maintain_Ajax.Test\Book_Maintain_Ajax.Test.csproj", "{4BF5C77B-9414-475C-B20B-739100C23CFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FBD519B-365D-43E1-AB9A-F16DEB99937C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBD519B-365D-43E1-AB9A-F16DEB99937C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBD519B-365D-43E1-AB9A-F16DEB99937C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBD519B-365D-43E1-AB9A-F16DEB99937C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D3C4F1-FC37-45AE-A060-67856B95E1EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D3C4F1-FC37-45AE-A060-67856B95E1EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D3C4F1-FC37-45AE-A060-67856B95E1EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D3C4F1-FC37-45AE-A060-67856B95E1EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{362B6FA5-4A7B-4C3C-BC55-7F2BEBDD3987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362B6FA5-4A7B-4C3C-BC55-7F2BEBDD3987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362B6FA5-4A7B-4C3C-BC55-7F2BEBDD3987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362B6FA5-4A7B-4C3C-BC55-7F2BEBDD3987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC4BD9E5-73B3-4E53-BC4E-F130D42D26E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC4BD9E5-73B3-4E53-BC4E-F130D42D26E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC4BD9E5-73B3-4E53-BC4E-F130D42D26E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC4BD9E5-73B3-4E53-BC4E-F130D42D26E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1667A329-F6E7-4DB5-857B-D5B6224752B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1667A329-F6E7-4DB5-857B-D5B6224752B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1667A329-F6E7-4DB5-857B-D5B6224752B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1667A329-F6E7-4DB5-857B-D5B6224752B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF5C77B-9414-475C-B20B-739100C23CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF5C77B-9414-475C-B20B-739100C23CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF5C77B-9414-475C-B20B-739100C23CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF5C77B-9414-475C-B20B-739100C23CFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A20AABBE-5BDB-4E2E-ADE3-C622754C8901}
+	EndGlobalSection
+EndGlobal

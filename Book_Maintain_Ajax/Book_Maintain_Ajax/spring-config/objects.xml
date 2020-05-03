@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+	<object id="BookController"  type="Book_Maintain_Ajax.Controllers.BookController,Book_Maintain_Ajax" singleton="false">
+	<!--type=命名空間,dll檔。Singleton 模式可以保證一個類別只有一個實例，並提供一個訪問（visit）這個實例的方法。-->
+		<property name="bookService" ref="BookService" />
+	</object>
+
+	<object id="BookService" type="Book_Maintain_Ajax.Service.BookService,Book_Maintain_Ajax.Service">
+		<property name="bookDao" ref="BookDao" />
+	</object>
+
+	<object id="BookDao" type="Book_Maintain_Ajax.Dao.BookDao,Book_Maintain_Ajax.Dao"/>
+
+</objects>

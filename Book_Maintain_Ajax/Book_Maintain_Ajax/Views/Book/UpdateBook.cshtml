@@ -1,0 +1,195 @@
+﻿@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+	<h2>修改畫面</h2>
+	<a href="/Book/Index">返回</a>
+	<form id="UpdateForm" class="mt-3">
+		<ul class="fieldlist">
+			<li>
+				<label class="col-md-2" for="BookName">書名</label>
+				<input class="form-control col-md-3" id="BookName" name="BookName" type="text" value="" required/>
+				<span class="k-invalid-msg" data-for="BookName"></span>
+			</li>
+			<li>
+				<label class="col-md-2" for="BookAuthor">作者</label>
+				<input class="form-control col-md-2" id="BookAuthor" name="BookAuthor" type="text" value="" required/>
+				<span class="k-invalid-msg" data-for="BookAuthor"></span>
+			</li>
+			<li>
+				<label class="col-md-2" for="BookPublisher">出版商</label>
+				<input class="form-control col-md-2" id="BookPublisher" name="BookPublisher" type="text" value="" required/>
+				<span class="k-invalid-msg" data-for="BookPublisher"></span>
+			</li>
+			<li>
+				<label class="col-md-2" for="Note">內容簡介</label>
+				<textarea  rows="3" class="form-control col-md-3" id="Note" name="Note" type="text" value="" required></textarea>
+				<span class="k-invalid-msg" data-for="Note"></span>
+			</li>
+			<li>
+				<label class="col-md-2" for="BoughtDate">購書日期</label>
+				<input class="form-control" style="width:20%" id="BoughtDate" name="BoughtDate" data-type="date" value="" required/>
+				<span class="k-invalid-msg" data-for="BoughtDate"></span>
+			</li>
+			<li>
+				<label class="col-md-2" for="BookClassId">圖書類別</label>
+				<select  id="BookClassId" name="BookClassId" required></select>
+				<span class="k-invalid-msg" data-for="BookClassId"></span>
+			</li>
+			<li>
+				<label class="col-md-2" for="BookStatusId">借閱狀態</label>
+				<select  id="BookStatusId" name="BookStatusId" required></select>
+				<span class="k-invalid-msg" data-for="BookStatusId"></span>
+			<li>
+				<label class="col-md-2" for="BookKeeperId">借閱人</label>
+				<select  id="BookKeeperId" name="BookKeeperId" ></select>
+				<span class="k-invalid-msg" data-for="BookKeeperId"></span>
+			</li>
+		</ul>
+		<button id="UpdateSave" type="button" class="btn btn-dark">存檔</button>
+		<button id="UpdateDel" type="button" class="btn btn-dark">刪除</button>
+	</form>
+</div>
+<script>
+	$(document).ready(function () {
+
+		var IniBookStatus = "";
+		var LaterBookStatus = "";
+		$("#BoughtDate").kendoDatePicker({
+			format:"yyyy/MM/dd"
+		});
+		$("#BookClassId").kendoDropDownList({
+			dataTextField: "Text",
+			dataValueField: "Value",
+			optionLabel: "請選擇",
+			dataSource: {
+				transport: {
+					read: {
+						type: "GET",
+						url: "/Book/GetDropdownList_Json",
+						dataType: "json",
+						data: { type: "GetClassList" }
+					}
+				}
+			}
+		});
+		$("#BookStatusId").kendoDropDownList({
+			dataTextField: "Text",
+			dataValueField: "Value",
+			optionLabel: "請選擇",
+			dataSource: {
+				transport: {
+					read: {
+						type: "GET",
+						url: "/Book/GetDropdownList_Json",
+						dataType: "json",
+						data: { type: "GetStatusList" }
+					}
+				}
+			}
+		});
+		$("#BookKeeperId").kendoDropDownList({
+			dataTextField: "Text",
+			dataValueField: "Value",
+			optionLabel: "請選擇",
+			dataSource: {
+				transport: {
+					read: {
+						type: "GET",
+						url: "/Book/GetDropdownList_Json",
+						dataType: "json",
+						data: { type: "GetUpdateKeeper" }
+					}
+				}
+			}
+		});
+
+		//GetUpdateData
+		$.ajax({
+			type: "GET",
+			url: "/Book/GetUpdateData",
+			success: function (response) {
+				$("#BookName").val(response["BookName"]);//val()是function
+				$("#BookAuthor").val(response["BookAuthor"]);
+				$("#BookPublisher").val(response["BookPublisher"]);
+				$("#Note").val(response["Note"]);
+				$("#BoughtDate").val(response["BoughtDate"]);
+				$("#BookClassId").data("kendoDropDownList").value(response["BookClassId"]); //會等dropdownlist建好
+				$("#BookStatusId").data("kendoDropDownList").value(response["BookStatusId"]);
+				$("#BookKeeperId").data("kendoDropDownList").value(response["BookKeeperId"]);
+				bookstatus();//借閱人跟借閱狀態關係
+				IniBookStatus = $("#BookStatusId").data("kendoDropDownList").value();//拿到一開始狀態,判斷是否增加借閱紀錄
+			}, error: function (error) {
+			}
+		});
+
+		//Sav
+		var validator = $("#UpdateForm").kendoValidator().data("kendoValidator")
+		$("#UpdateSave").click(function () {
+			if (validator.validate()) {
+				LaterBookStatus = $("#BookStatusId").data("kendoDropDownList").value();//拿到之後狀態
+				//跟Update至 BOOK_DATA
+				$.ajax({
+					type: "POST",
+					url: "/Book/UpdateBook",
+					data: {
+						BookName: $("#BookName").val(),
+						BookAuthor: $("#BookAuthor").val(),
+						BookPublisher: $("#BookPublisher").val(),
+						Note: $("#Note").val(),
+						BoughtDate: $("#BoughtDate").val(),
+						BookClassId: $("#BookClassId").data("kendoDropDownList").value(),
+						BookStatusId: $("#BookStatusId").data("kendoDropDownList").value(),
+						BookKeeperId: $("#BookKeeperId").data("kendoDropDownList").value(),
+						IniBookStatus: IniBookStatus,
+						LaterBookStatus: LaterBookStatus
+					},
+					success: function (data) {
+						alert(data);
+					}
+				}); 
+			}
+			else {
+				console.log("Update validation error");
+			}
+		});
+
+		//Del
+		$("#UpdateDel").click(function () {
+			if (confirm("是否刪除")) {
+				$.ajax({
+					type: "POST",
+					url: "/Book/UpdateBookDel",
+					data: {},
+					dataType: "json",
+					success: function (response) {
+						alert(response);
+						var address = "/Book/Index";
+						location.replace(address);
+					}, error: function (error) {
+						alert("系統發生錯誤");
+					}
+				});
+			}
+		});
+
+
+
+		$("#BookStatusId").change(bookstatus);
+	});
+
+
+	/*FUNCTION*/
+	//借閱人跟借閱狀態關係
+	function bookstatus() {
+		
+		if ($("#BookStatusId").data("kendoDropDownList").value() == "A" || $("#BookStatusId").data("kendoDropDownList").value() == "U") {
+			$("#BookKeeperId").data("kendoDropDownList").value("");
+			$("#BookKeeperId").data("kendoDropDownList").enable(false);
+		}
+		else {
+			$("#BookKeeperId").data("kendoDropDownList").enable(true);
+		}		
+	}
+</script>
