@@ -5,12 +5,14 @@
 	</div>
 </div>
 <script>
+	var id = oneValues();
 	$(document).ready(function () {
+		console.log(id);
 		$("#detailtbcontainer").kendoGrid({
 			dataSource: {
 				transport: {
 					read: {
-						type: "POST", url: "/Book/BookDetail", data: {}, dataType: "json"
+						type: "GET", url: "/Book/ShowBookDetail/"+id, dataType: "json"
 					}
 				},
 				schema: {
@@ -59,5 +61,11 @@
 		var dataItem = grid.dataItem(tr);
 		var address = "/Book/UpdateBook/" + dataItem.BookID;
 		location.replace(address);
+	}
+	function oneValues() {
+		var result;
+		var url = location.href;
+		result = url.split('/');
+		return result[result.length - 1];
 	}
 </script>

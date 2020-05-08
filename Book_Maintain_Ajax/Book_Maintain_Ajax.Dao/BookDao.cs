@@ -226,7 +226,7 @@ namespace Book_Maintain_Ajax.Dao
 		//update
 		public Book_Maintain_Ajax.Model.BookUpdate GetUpdateBook(int id)
 		{
-			string sql = @"SELECT bd.BOOK_NAME AS BookName,bd.BOOK_AUTHOR AS BookAuthor,bd.BOOK_PUBLISHER AS BookPublisher,bd.BOOK_NOTE AS Note,
+			string sql = @"SELECT bd.BOOK_ID AS BookID,bd.BOOK_NAME AS BookName,bd.BOOK_AUTHOR AS BookAuthor,bd.BOOK_PUBLISHER AS BookPublisher,bd.BOOK_NOTE AS Note,
 							CONVERT(varchar, bd.BOOK_BOUGHT_DATE, 111) AS BoughtDate,bc.BOOK_CLASS_ID AS BookClassId,
 							bcd.CODE_ID AS BookStatusId,mm.USER_ID AS BookKeeperId
 						   FROM BOOK_DATA bd
@@ -248,7 +248,7 @@ namespace Book_Maintain_Ajax.Dao
 				return UpdateBook;
 			}
 		}
-		public void UpdateBook(int id, Book_Maintain_Ajax.Model.BookUpdate updatedata)
+		public void UpdateBook(Book_Maintain_Ajax.Model.BookUpdate updatedata)
 		{
 			string sql = @"
 							BEGIN TRY
@@ -291,7 +291,7 @@ namespace Book_Maintain_Ajax.Dao
 					BOOK_CLASS_ID = updatedata.BookClassId,
 					BOOK_STATUS_ID = updatedata.BookStatusId,
 					BOOK_KEEPER_ID = updatedata.BookKeeperId == null ? string.Empty : updatedata.BookKeeperId,
-					BOOK_ID = id
+					BOOK_ID = updatedata.BookID
 				});
 			}
 

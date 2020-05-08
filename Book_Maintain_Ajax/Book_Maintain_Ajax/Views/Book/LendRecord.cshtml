@@ -8,12 +8,13 @@
 	</div>
 </div>
 <script>
+	var id = oneValues();
 	$(document).ready(function () {
 		$("#recordtbcontainer").kendoGrid({
 			dataSource: {
 				transport: {
 					read: {
-						type: "POST", url: "/Book/LendRecord", data: {}, dataType: "json"
+						type: "GET", url: "/Book/ShowLendRecord/"+id, dataType: "json"
 					}
 				},
 				schema: {
@@ -43,5 +44,11 @@
 			],
 		});
 	});
+	function oneValues() {
+		var result;
+		var url = location.href;
+		result = url.split('/');
+		return result[result.length - 1];
+	}
 </script>
 

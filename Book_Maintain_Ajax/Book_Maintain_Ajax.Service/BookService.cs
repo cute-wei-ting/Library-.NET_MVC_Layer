@@ -51,9 +51,9 @@ namespace Book_Maintain_Ajax.Service
 		{
 			return bookDao.GetUpdateBook(id);
 		}
-		public void UpdateBook(int id, Book_Maintain_Ajax.Model.BookUpdate updatedata)
+		public void UpdateBook(Book_Maintain_Ajax.Model.BookUpdate updatedata)
 		{
-			bookDao.UpdateBook(id, updatedata);
+			bookDao.UpdateBook(updatedata);
 		}
 		public string DecideDelete(string BookID)
 		{

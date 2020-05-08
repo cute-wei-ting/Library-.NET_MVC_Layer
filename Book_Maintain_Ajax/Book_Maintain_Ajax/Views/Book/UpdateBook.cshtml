@@ -53,7 +53,7 @@
 </div>
 <script>
 	$(document).ready(function () {
-
+		var id = oneValues();
 		var IniBookStatus = "";
 		var LaterBookStatus = "";
 		$("#BoughtDate").kendoDatePicker({
@@ -108,7 +108,7 @@
 		//GetUpdateData
 		$.ajax({
 			type: "GET",
-			url: "/Book/GetUpdateData",
+			url: "/Book/GetUpdateData/"+id,
 			success: function (response) {
 				$("#BookName").val(response["BookName"]);//val()是function
 				$("#BookAuthor").val(response["BookAuthor"]);
@@ -134,6 +134,7 @@
 					type: "POST",
 					url: "/Book/UpdateBook",
 					data: {
+						BookID:id,
 						BookName: $("#BookName").val(),
 						BookAuthor: $("#BookAuthor").val(),
 						BookPublisher: $("#BookPublisher").val(),
@@ -160,8 +161,8 @@
 			if (confirm("是否刪除")) {
 				$.ajax({
 					type: "POST",
-					url: "/Book/UpdateBookDel",
-					data: {},
+					url: "/Book/DeleteBook",
+					data: {BookId:id},
 					dataType: "json",
 					success: function (response) {
 						alert(response);
@@ -191,5 +192,11 @@
 		else {
 			$("#BookKeeperId").data("kendoDropDownList").enable(true);
 		}		
+	}
+	function oneValues() {
+		var result;
+		var url = location.href;
+		result = url.split('/');
+		return result[result.length - 1];
 	}
 </script>

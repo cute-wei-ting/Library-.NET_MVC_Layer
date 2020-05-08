@@ -83,7 +83,7 @@ namespace Book_Maintain_Ajax.Dao
 		//	throw new NotImplementedException();
 		//}
 
-		public void UpdateBook(int id, BookUpdate updatedata)
+		public void UpdateBook(BookUpdate updatedata)
 		{
 			throw new NotImplementedException();
 		}

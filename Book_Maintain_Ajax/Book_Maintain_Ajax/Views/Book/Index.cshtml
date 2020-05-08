@@ -209,19 +209,7 @@
 				data: { BookId: dataItem.BookID },
 				dataType: "json",
 				success: function (response) {
-
-					$.ajax({
-						type: "GET",
-						url: "/Book/GetGrid",
-						data: {},
-						success: function (data) {
-							var dataSource = new kendo.data.DataSource({
-								data: data
-							});
-							$("#searchcontainer").data("kendoGrid").setDataSource(dataSource);
-						}
-					});//刷新整個Grid
-
+					$("#searchcontainer").data("kendoGrid").dataSource.read();
 					alert(response);
 				}, error: function (error) {
 					alert("系統發生錯誤");

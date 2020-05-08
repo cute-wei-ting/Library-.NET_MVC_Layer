@@ -18,6 +18,6 @@ namespace Book_Maintain_Ajax.Dao
 		int InsertBook(BookInsert insertdata);
 		void InsertLendRecord(LendRecordInsert insertdata);
 		List<BookSearch> SearchBook(BookSearch searchdata);
-		void UpdateBook(int id, BookUpdate updatedata);
+		void UpdateBook(BookUpdate updatedata);
 	}
 }
